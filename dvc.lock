@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  process_data:
+    cmd: python scripts/process_data.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 3a9e11eb2aa7ccdfc92a07c00b1468ff.dir
+      size: 1548874
+      nfiles: 5
+    - path: scripts/process_data.py
+      hash: md5
+      md5: 9cca39d7fa692870150e63a4cb3c50bb
+      size: 2750
+    params:
+      params.yaml:
+        process_data:
+          raw_path: data/raw
+          processed_path: processed_data/stock_data.parquet
+          data_version: v0
+    outs:
+    - path: processed_data/stock_data.parquet
+      hash: md5
+      md5: 4edb40b106e8d71df03bfa330c960037
+      size: 213121
+  train:
+    cmd: python scripts/train.py
+    deps:
+    - path: processed_data/stock_data.parquet
+      hash: md5
+      md5: 4edb40b106e8d71df03bfa330c960037
+      size: 213121
+    - path: scripts/train.py
+      hash: md5
+      md5: 240065f08bce5e6e4c878dae0fbaa6f8
+      size: 1428
+    params:
+      params.yaml:
+        train:
+          processed_path: processed_data/stock_data.parquet
+          model_path: models/model.joblib
+          test_size: 0.2
+          random_state: 42
+          n_estimators: 10
+          max_depth: 5
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 726b07e38af19d8a5f9ac243ec018732
+      size: 46201
