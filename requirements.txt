@@ -1,0 +1,16 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+joblib
+pyyaml
+hyperopt
+# MLOps tools
+dvc[gcs]
+dvc[gs]
+mlflow
+feast
+gcsfs
+# CI/Test tools
+pytest

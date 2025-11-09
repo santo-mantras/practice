@@ -1,0 +1,16 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Data (we will add these to DVC later)
+data/raw/
+processed_data/
+
+# Models
+models/model.joblib
+
+# Local stores (for Feast/MLflow)
+feature_repo/data/
+mlflow.db
+/processed_data
