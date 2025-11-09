@@ -1,0 +1,6 @@
+project: stock_predictor
+registry: data/registry.db
+provider: local
+offline_store:
+    type: file
+    # The 'path' key was here and was illegal. We removed it.

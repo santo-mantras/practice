@@ -1,5 +1,5 @@
 [core]
     remote = gcs
 ['remote "gcs"']
-    url = gs://oppe1_practice/practice-exam-dvc
+    url = gs://mlops-course-bionic-insight-473406-k8-unique/practice-exam-dvc
     projectname = bionic-insight-473406-k8

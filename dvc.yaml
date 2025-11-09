@@ -9,10 +9,20 @@ stages:
     outs:
       - processed_data/stock_data.parquet
 
+  feast_apply:
+    cmd: (cd feature_repo && feast apply)
+    deps:
+      - feature_repo/features.py
+      - feature_repo/feature_store.yaml
+    outs:
+      # This is the real output of this stage
+      - feature_repo/data/registry.db
+
   train:
     cmd: python scripts/train.py
     deps:
       - processed_data/stock_data.parquet
+      - feature_repo/data/registry.db
       - scripts/train.py
     params:
       - train

@@ -26,6 +26,10 @@ stages:
   train:
     cmd: python scripts/train.py
     deps:
+    - path: feature_repo/data/registry.db
+      hash: md5
+      md5: 872c028b6d76f6f743b70cba796937d4
+      size: 977
     - path: processed_data/stock_data.parquet
       hash: md5
       md5: 4edb40b106e8d71df03bfa330c960037
@@ -48,3 +52,19 @@ stages:
       hash: md5
       md5: 726b07e38af19d8a5f9ac243ec018732
       size: 46201
+  feast_apply:
+    cmd: (cd feature_repo && feast apply)
+    deps:
+    - path: feature_repo/feature_store.yaml
+      hash: md5
+      md5: 1fe56fc859d9ec752f0e8dce3a562bd1
+      size: 160
+    - path: feature_repo/features.py
+      hash: md5
+      md5: 5aa44c1fab1316a1eaa1844738dd452d
+      size: 982
+    outs:
+    - path: feature_repo/data/registry.db
+      hash: md5
+      md5: 872c028b6d76f6f743b70cba796937d4
+      size: 977
